@@ -44,7 +44,7 @@ python main.py
 
 ## Sample Inputs
 ##### Base_URL: https://www.amazon.in/Samsung-Storage-Display-Charging-Security/product-reviews/B0DFY3XCB6/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews
-##### Product Name: Mobile
+##### Product Name: Samsung Galaxy M05
 ##### Number of Pages: 10
 ##### Save-as: test
 
