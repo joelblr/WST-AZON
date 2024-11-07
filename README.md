@@ -1,6 +1,11 @@
 # WST-AZON
 Web Scraper Tool For Amazon Reviews Dataset Generation
 
+##### Git
+```bash
+git clone git@github.com:joelblr/WST-AZON.git
+cd WST-AZON\
+```
 ##### Nodejs
 ```bash
 mkdir amazon_reviews
