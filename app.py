@@ -1,9 +1,9 @@
+import json
+import threading
+import subprocess
 import customtkinter as ctk
 import tkinter.messagebox as messagebox
-import subprocess
-import json
-import sys
-import threading
+
 
 # Function to handle form submission
 def submit():
@@ -23,7 +23,7 @@ def submit():
             messagebox.showerror("Missing Information", "Please fill in all the fields.")
             return
 
-    # Validate "From Page", and "To Page" to ensure they are integers
+    # Validate "Number of Pages", "From Page", and "To Page" to ensure they are integers
     try:
         data['FROM_PAGE'] = int(data['FROM_PAGE'])
         data['TO_PAGE'] = int(data['TO_PAGE'])
@@ -114,12 +114,6 @@ product_name_label = ctk.CTkLabel(app, text="Product Name", font=("Helvetica", 1
 product_name_label.grid(row=2, column=0, pady=(10, 5), padx=(10, 10), sticky="w")
 product_name_entry = ctk.CTkEntry(app, placeholder_text="Enter Product Name", font=("Helvetica", 14))
 product_name_entry.grid(row=2, column=1, pady=5, padx=20, sticky="ew")
-
-# # Number of Pages (new integer field)
-# num_pages_label = ctk.CTkLabel(app, text="Number of Pages", font=("Helvetica", 14, "bold"), text_color=text_color)
-# num_pages_label.grid(row=3, column=0, pady=(10, 5), padx=(10, 10), sticky="w")
-# num_pages_entry = ctk.CTkEntry(app, placeholder_text="Enter Number of Pages", font=("Helvetica", 14))
-# num_pages_entry.grid(row=3, column=1, pady=5, padx=20, sticky="ew")
 
 # From Page (new field)
 from_page_label = ctk.CTkLabel(app, text="From Page", font=("Helvetica", 14, "bold"), text_color=text_color)
