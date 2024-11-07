@@ -10,7 +10,8 @@ SIGN_IN_URL = 'https://www.amazon.in/ap/signin?openid.pape.max_auth_age=3600&ope
 const dataJson = process.argv[2];
 // Parse the JSON string into a JavaScript object
 const data2 = JSON.parse(dataJson);
-const { PRODUCT_BASE_URL, PRODUCT_NAME, NUM_PAGES, FILE_NAME } = data2;
+// const { PRODUCT_BASE_URL, PRODUCT_NAME, NUM_PAGES, FILE_NAME } = data2;
+const { PRODUCT_BASE_URL, PRODUCT_NAME, FROM_PAGE, TO_PAGE, FILE_NAME } = data2;
 
 // // from gui
 // PRODUCT_BASE_URL = 'https://www.amazon.in/Samsung-Storage-Display-Charging-Security/product-reviews/B0DFY3XCB6/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews'
@@ -19,7 +20,6 @@ const { PRODUCT_BASE_URL, PRODUCT_NAME, NUM_PAGES, FILE_NAME } = data2;
 // FILE_NAME = "amazon_reviews77"
 
 // login cred.json
-// async function readFile() {
 function readFile() {
     try {
         // Read the JSON file asynchronously
@@ -109,7 +109,7 @@ async function fetchAmazonReviews() {
     // Create an empty array to store the review data.
     const reviewsData = [];
 
-    for (let i = 1; i <= NUM_PAGES; i++) {
+    for (let i = FROM_PAGE; i <= FROM_PAGE+TO_PAGE; i++) {
         const productURL = PRODUCT_BASE_URL + "&pageNumber=" + i;
     
         try {
@@ -134,7 +134,7 @@ async function fetchAmazonReviews() {
                     let cleanedText = element.innerHTML.trim();
 
                     // Replace <br> tags with a single space
-                    cleanedText = cleanedText.replace(/<br\s*\/?>/gi, ' ');
+                    cleanedText = cleanedText.replace(/<br\s*\/?>/gi, '. ');
                 
                     // Remove all other HTML tags (e.g., <span>, <a>, <em>, etc.)
                     cleanedText = cleanedText.replace(/<\/?[^>]+(>|$)/g, '');  // This will strip out all HTML tags
@@ -142,6 +142,9 @@ async function fetchAmazonReviews() {
                     // Remove emojis using a regular expression (if needed)
                     cleanedText = cleanedText.replace(/[\p{Emoji}\p{ExtPict}]/gu, ''); // Remove emojis
                 
+                    // Remove extra spaces (replace multiple spaces with a single space)
+                    cleanedText = cleanedText.replace(/\s+/g, ' ').trim(); // \s+ matches any whitespace, and trim() removes leading/trailing spaces
+
                     // Return the cleaned text
                     return cleanedText;
                 });
@@ -167,6 +170,9 @@ async function fetchAmazonReviews() {
                     // Remove emojis using a regular expression (if needed)
                     cleanedText = cleanedText.replace(/[\p{Emoji}\p{ExtPict}]/gu, ''); // Remove emojis
                 
+                    // Remove extra spaces (replace multiple spaces with a single space)
+                    cleanedText = cleanedText.replace(/\s+/g, ' ').trim(); // \s+ matches any whitespace, and trim() removes leading/trailing spaces
+
                     // Return the cleaned text
                     return cleanedText;
                 });
