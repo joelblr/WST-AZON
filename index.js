@@ -1,7 +1,8 @@
 // Import the necessary libraries.
 const puppeteer = require("puppeteer");
 const fs = require("fs");
-const fsp = require("fs").promises;
+// const fsp = require("fs").promises;
+const path = require('path');
 
 // hard coded
 SIGN_IN_URL = 'https://www.amazon.in/ap/signin?openid.pape.max_auth_age=3600&openid.return_to=https%3A%2F%2Fwww.amazon.in%2FSamsung-Storage-Display-Charging-Security%2Fproduct-reviews%2FB0DFY3XCB6%2Fref%3Dcm_cr_dp_d_show_all_btm%3Fie%3DUTF8%26reviewerType%3Dall_reviews&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=inflex&openid.mode=checkid_setup&language=en_IN&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0'
@@ -20,6 +21,7 @@ const { PRODUCT_BASE_URL, PRODUCT_NAME, FROM_PAGE, TO_PAGE, FILE_NAME } = data2;
 // FILE_NAME = "amazon_reviews77"
 
 // login cred.json
+// async function readFile() {
 function readFile() {
     try {
         // Read the JSON file asynchronously
@@ -109,7 +111,7 @@ async function fetchAmazonReviews() {
     // Create an empty array to store the review data.
     const reviewsData = [];
 
-    for (let i = FROM_PAGE; i <= FROM_PAGE+TO_PAGE; i++) {
+    for (let i = FROM_PAGE; i <= TO_PAGE; i++) {
         const productURL = PRODUCT_BASE_URL + "&pageNumber=" + i;
     
         try {
@@ -191,12 +193,12 @@ async function fetchAmazonReviews() {
         } catch (error) {
             // Log the error if page.goto or any other part of the code fails
             console.error(`Error while navigating to ${productURL}:`, error.message);
-            break;
+            continue;
         }
     }
 
     // Create the CSV content.
-    let csvContent = "Product Name,Customer Name,Review Title,Rating,Comment\n";
+    let csvContent = "Product_Name,Customer_Name,Review_Title,Rating,Review_Text\n";
 
     // Iterate over the reviews data and add it to the CSV content.
     let cnt = 0;
@@ -206,9 +208,15 @@ async function fetchAmazonReviews() {
         csvContent += `"${PRODUCT_NAME}","${author}","${title}",${rating},"${text}"\n`;
     }
 
-    // Write the CSV content to a file.
-    const csvFILE_NAME = FILE_NAME + ".csv";
-    await fs.writeFileSync(csvFILE_NAME, csvContent, "utf8");
+    // Define the directory and file path
+    const dirPath = path.join(__dirname, 'datasets');
+    const filePath = path.join(dirPath, FILE_NAME+'.csv');
+
+    // Ensure the directory exists (create it if it doesn't)
+    fs.mkdirSync(dirPath, { recursive: true }); // Creates the directory and any necessary subdirectories
+    // Write the file // Saves the content to the file
+    fs.writeFileSync(filePath, csvContent, 'utf8');
+    console.log(`File saved to ${filePath}`);
 
     // Log a message to the console indicating that the CSV file has been created.
     console.log('Total number of records: ' + cnt);
@@ -219,4 +227,3 @@ async function fetchAmazonReviews() {
 
 // Call the fetchAmazonReviews function.
 fetchAmazonReviews();
-
