@@ -11,6 +11,7 @@ def submit():
     data = {
         "PRODUCT_BASE_URL": base_url_entry.get().strip(),
         "PRODUCT_NAME": product_name_entry.get().strip(),
+        # "NUM_PAGES": num_pages_entry.get().strip(),
         "FROM_PAGE": from_page_entry.get().strip(),
         "TO_PAGE": to_page_entry.get().strip(),
         "FILE_NAME": filename_entry.get().strip(),
@@ -113,6 +114,12 @@ product_name_label = ctk.CTkLabel(app, text="Product Name", font=("Helvetica", 1
 product_name_label.grid(row=2, column=0, pady=(10, 5), padx=(10, 10), sticky="w")
 product_name_entry = ctk.CTkEntry(app, placeholder_text="Enter Product Name", font=("Helvetica", 14))
 product_name_entry.grid(row=2, column=1, pady=5, padx=20, sticky="ew")
+
+# # Number of Pages (new integer field)
+# num_pages_label = ctk.CTkLabel(app, text="Number of Pages", font=("Helvetica", 14, "bold"), text_color=text_color)
+# num_pages_label.grid(row=3, column=0, pady=(10, 5), padx=(10, 10), sticky="w")
+# num_pages_entry = ctk.CTkEntry(app, placeholder_text="Enter Number of Pages", font=("Helvetica", 14))
+# num_pages_entry.grid(row=3, column=1, pady=5, padx=20, sticky="ew")
 
 # From Page (new field)
 from_page_label = ctk.CTkLabel(app, text="From Page", font=("Helvetica", 14, "bold"), text_color=text_color)
