@@ -5,11 +5,13 @@ Web Scraper Tool For Amazon Reviews Dataset Generation
 ```bash
 git clone git@github.com:joelblr/WST-AZON.git
 cd WST-AZON\
+
 ```
 ##### Nodejs
 ```bash
 npm init -y
 npm install puppeteer
+
 ```
 ##### Python
 ```bash
@@ -17,6 +19,7 @@ python -m venv venv
 .\venv\Scripts\activate
 pip install -r requirements.txt
 python main.py
+
 ```
 
 ## Result
