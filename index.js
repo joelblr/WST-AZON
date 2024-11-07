@@ -116,7 +116,7 @@ async function fetchAmazonReviews() {
     
         try {
             // Navigate to the product page for which you want to fetch the reviews.
-            await page.goto(productURL, { waitUntil: 'load', timeout: 10000 }); // XXX:
+            await page.goto(productURL, { waitUntil: 'load', timeout: 20000 }); // XXX:
     
             // Wait for the allReviews selector to be loaded.
             await page.waitForSelector(selectors.allReviews);
@@ -198,7 +198,8 @@ async function fetchAmazonReviews() {
     }
 
     // Create the CSV content.
-    let csvContent = "Product_Name,Customer_Name,Review_Title,Rating,Review_Text\n";
+    let csvHeader = "Product_Name,Customer_Name,Review_Title,Rating,Review_Text\n";
+    let csvContent = "";
 
     // Iterate over the reviews data and add it to the CSV content.
     let cnt = 0;
@@ -208,17 +209,25 @@ async function fetchAmazonReviews() {
         csvContent += `"${PRODUCT_NAME}","${author}","${title}",${rating},"${text}"\n`;
     }
 
+
     // Define the directory and file path
     const dirPath = path.join(__dirname, 'datasets');
     const filePath = path.join(dirPath, FILE_NAME+'.csv');
-
     // Ensure the directory exists (create it if it doesn't)
     fs.mkdirSync(dirPath, { recursive: true }); // Creates the directory and any necessary subdirectories
-    // Write the file // Saves the content to the file
-    fs.writeFileSync(filePath, csvContent, 'utf8');
-    console.log(`File saved to ${filePath}`);
+    
+    // Check if the file exists
+    if (fs.existsSync(filePath)) {
+        // Append an existing file without Header
+        fs.appendFileSync(filePath, csvContent, 'utf8');
+    } else {
+        // Create a new file with Header
+        csvContent = csvHeader+csvContent;
+        fs.writeFileSync(filePath, csvContent, 'utf8');
+    }
 
     // Log a message to the console indicating that the CSV file has been created.
+    console.log(`File saved to ${filePath}`);
     console.log('Total number of records: ' + cnt);
 
     await browser.close()
