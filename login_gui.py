@@ -40,7 +40,7 @@ def on_login():
 # Create the tkinter window for login
 root = ctk.CTk()
 
-root.title("Login Form")
+root.title("Amazon Login Form")
 root.geometry("400x300")
 
 # Configure grid layout with resizing behavior for all rows and columns
