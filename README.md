@@ -26,7 +26,7 @@ python main.py
 ```
 
 ## Result
-![image](https://github.com/user-attachments/assets/f138bf1f-3484-47f4-8deb-fcdcb2084f05)
+![image](https://github.com/user-attachments/assets/39ea3f4c-8600-4ef6-951d-336cb85f7968)
 ![image](https://github.com/user-attachments/assets/d3fa4d4f-a288-4161-916c-625a50abf1c9)
 
 
