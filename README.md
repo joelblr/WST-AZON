@@ -1,7 +1,8 @@
 # WST-AZON
 Web Scraper Tool For Amazon Reviews Dataset Generation
 
-##### Make sure you have an Amazon account
+#### Make sure you have an Amazon account
+https://www.amazon.in/ap/register?openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.return_to=https%3A%2F%2Fwww.amazon.in%2Fref%3Drhf_sign_in&openid.assoc_handle=inflex
 
 ##### Git
 ```bash
