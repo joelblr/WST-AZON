@@ -23,7 +23,7 @@ def submit():
             messagebox.showerror("Missing Information", "Please fill in all the fields.")
             return
 
-    # Validate "Number of Pages", "From Page", and "To Page" to ensure they are integers
+    # Validate "From Page", and "To Page" to ensure they are integers
     try:
         data['FROM_PAGE'] = int(data['FROM_PAGE'])
         data['TO_PAGE'] = int(data['TO_PAGE'])
