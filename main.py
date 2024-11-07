@@ -6,7 +6,6 @@ import sys
 def check_for_credentials() :
 
     credentials_file = 'credentials.json'
-    
     # Check if the credentials file exists and contains the necessary data
     if os.path.exists(credentials_file):
         with open(credentials_file, 'r') as file:
@@ -20,8 +19,6 @@ def main() :
     if not check_for_credentials() :
         print("No credentials found, launching login_gui.py...")
         # If no credentials, run login_gui.py
-
-        # subprocess.run(['python', 'login_gui.py'])
         result = subprocess.run(
             [sys.executable, 'login_gui.py'],
             capture_output=True,  # Capture both stdout and stderr
@@ -30,7 +27,6 @@ def main() :
 
     print("Credentials found, launching app...")
     # If credentials exist, run app.py (main app)
-    # subprocess.run(['python', 'app.py'])
     result = subprocess.run(
         [sys.executable, 'app.py'],
         capture_output=True,  # Capture both stdout and stderr
