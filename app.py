@@ -90,7 +90,7 @@ def run_subprocess(data_json, filename):
 app = ctk.CTk()
 
 # Set window title and size
-app.title("@https://github.com/joelblr/WST ? ")
+app.title("@https://github.com/joelblr/WST-AZON")
 app.geometry("500x450")  # Adjusted height to accommodate the new fields
 
 # Set the background color of the main window (not the labels)
