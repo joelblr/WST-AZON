@@ -8,8 +8,6 @@ cd WST-AZON\
 ```
 ##### Nodejs
 ```bash
-mkdir amazon_reviews
-cd amazon_reviews
 npm init -y
 npm install puppeteer
 ```
