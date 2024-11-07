@@ -116,7 +116,7 @@ async function fetchAmazonReviews() {
     
         try {
             // Navigate to the product page for which you want to fetch the reviews.
-            await page.goto(productURL, { waitUntil: 'load', timeout: 60000 });
+            await page.goto(productURL, { waitUntil: 'load', timeout: 10000 }); // XXX:
     
             // Wait for the allReviews selector to be loaded.
             await page.waitForSelector(selectors.allReviews);
